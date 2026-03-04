@@ -13,7 +13,7 @@ export function Hero() {
   ]
   return (
     <section className="@container container mx-auto space-y-8 px-4 pt-15">
-      <div className="relative rounded-2xl border border-dashed">
+      <div className="relative rounded-2xl border-2 border-dashed">
         <div className="relative">
           <img
             src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=1974&auto=format&fit=crop"
