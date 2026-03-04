@@ -9,18 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthSignInRouteImport } from './routes/auth/sign-in'
 import { Route as storeLayoutRouteImport } from './routes/(store)/_layout'
+import { Route as storeLayoutIndexRouteImport } from './routes/(store)/_layout/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AuthSignInRoute = AuthSignInRouteImport.update({
+  id: '/auth/sign-in',
+  path: '/auth/sign-in',
   getParentRoute: () => rootRouteImport,
 } as any)
 const storeLayoutRoute = storeLayoutRouteImport.update({
   id: '/(store)/_layout',
   getParentRoute: () => rootRouteImport,
+} as any)
+const storeLayoutIndexRoute = storeLayoutIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => storeLayoutRoute,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
@@ -29,40 +35,48 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/auth/sign-in': typeof AuthSignInRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/': typeof storeLayoutIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/auth/sign-in': typeof AuthSignInRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/': typeof storeLayoutIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/(store)/_layout': typeof storeLayoutRoute
+  '/(store)/_layout': typeof storeLayoutRouteWithChildren
+  '/auth/sign-in': typeof AuthSignInRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/(store)/_layout/': typeof storeLayoutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/auth/$'
+  fullPaths: '/auth/sign-in' | '/api/auth/$' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/auth/$'
-  id: '__root__' | '/' | '/(store)/_layout' | '/api/auth/$'
+  to: '/auth/sign-in' | '/api/auth/$' | '/'
+  id:
+    | '__root__'
+    | '/(store)/_layout'
+    | '/auth/sign-in'
+    | '/api/auth/$'
+    | '/(store)/_layout/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  storeLayoutRoute: typeof storeLayoutRoute
+  storeLayoutRoute: typeof storeLayoutRouteWithChildren
+  AuthSignInRoute: typeof AuthSignInRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/auth/sign-in': {
+      id: '/auth/sign-in'
+      path: '/auth/sign-in'
+      fullPath: '/auth/sign-in'
+      preLoaderRoute: typeof AuthSignInRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(store)/_layout': {
@@ -71,6 +85,13 @@ declare module '@tanstack/react-router' {
       fullPath: ''
       preLoaderRoute: typeof storeLayoutRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/(store)/_layout/': {
+      id: '/(store)/_layout/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof storeLayoutIndexRouteImport
+      parentRoute: typeof storeLayoutRoute
     }
     '/api/auth/$': {
       id: '/api/auth/$'
@@ -82,9 +103,21 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface storeLayoutRouteChildren {
+  storeLayoutIndexRoute: typeof storeLayoutIndexRoute
+}
+
+const storeLayoutRouteChildren: storeLayoutRouteChildren = {
+  storeLayoutIndexRoute: storeLayoutIndexRoute,
+}
+
+const storeLayoutRouteWithChildren = storeLayoutRoute._addFileChildren(
+  storeLayoutRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  storeLayoutRoute: storeLayoutRoute,
+  storeLayoutRoute: storeLayoutRouteWithChildren,
+  AuthSignInRoute: AuthSignInRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
