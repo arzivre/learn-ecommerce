@@ -1,3 +1,4 @@
+import { Brand } from '#/components/templates/brand'
 import { Collections } from '#/components/templates/store/homepage/collections'
 import { CtaBanner } from '#/components/templates/store/homepage/cta-banner'
 import { FeatureGrid } from '#/components/templates/store/homepage/feature-grid'
@@ -13,6 +14,7 @@ function App() {
       <FeatureGrid />
       <Collections />
       <CtaBanner />
+      <Brand />
     </div>
   )
 }
