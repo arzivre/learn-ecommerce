@@ -30,7 +30,7 @@ export default function Section({
   return (
     <section
       className={cn(
-        '@container container mx-auto my-20 px-4',
+        '@container container mx-auto my-20 px-4 [content-visibility:auto]',
         sectionClassName,
       )}
     >
