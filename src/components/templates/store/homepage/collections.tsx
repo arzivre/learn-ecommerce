@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import StarSolidIcon from '@/components/ui/icons/star-solid'
 import { useState } from 'react'
 
-export default function Collections() {
+export function Collections() {
   const tabs = ['All', 'Mens', 'Womens', 'Kids'] as const
   const [active, setActive] = useState<(typeof tabs)[number]>('Womens')
 
@@ -13,10 +13,10 @@ export default function Collections() {
       title="Elevate Your Style with Our Latest Collection"
       description="Each piece is crafted to enhance your fashion statement."
       rightAsset={
-        <StarSolidIcon className="h-20 @5xl:h-[316px] @5xl:w-[301px] @6xl:h-[386px] @6xl:w-[246px]" />
+        <StarSolidIcon className="h-20 @5xl:h-79 @5xl:w-75.25 @6xl:h-96.5 @6xl:w-61.5" />
       }
     >
-      <div className="@4x:px-12 px-5 pb-8 @6xl:px-[60px] @7xl:px-20">
+      <div className="@4x:px-12 px-5 pb-8 @6xl:px-15 @7xl:px-20">
         <div className="flex flex-wrap gap-3">
           {tabs.map((tab) => (
             <Button

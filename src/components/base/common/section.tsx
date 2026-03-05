@@ -52,13 +52,13 @@ export default function Section({
         )}
         <div
           className={cn(
-            'mb-0 p-5 @4xl:p-12 @6xl:p-[60px] @7xl:p-20',
+            'mb-0 p-5 @4xl:p-12 @6xl:p-15 @7xl:p-20',
             rightAction
               ? 'space-y-7 @4xl:flex @4xl:items-center @4xl:justify-between @4xl:gap-6'
               : 'space-y-7',
           )}
         >
-          <div className="max-w-[804px] space-y-7">
+          <div className="max-w-201 space-y-7">
             <h2
               className={cn(
                 'text-[28px] uppercase @5xl:text-[38px] @7xl:text-5xl',
