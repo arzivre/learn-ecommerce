@@ -1,4 +1,5 @@
 import { Brand } from '#/components/templates/brand'
+import { Footer } from '#/components/templates/store/footer'
 import { Collections } from '#/components/templates/store/homepage/collections'
 import { CtaBanner } from '#/components/templates/store/homepage/cta-banner'
 import { FeatureGrid } from '#/components/templates/store/homepage/feature-grid'
@@ -15,6 +16,7 @@ function App() {
       <Collections />
       <CtaBanner />
       <Brand />
+      <Footer />
     </div>
   )
 }
