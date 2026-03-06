@@ -12,7 +12,7 @@ interface CartItemProps {
   isCompact?: boolean
 }
 
-export default function CartItem({ item, isCompact = false }: CartItemProps) {
+export function CartItem({ item, isCompact = false }: CartItemProps) {
   const { updateQuantity, removeItem } = useCartStore()
 
   return (
@@ -90,4 +90,3 @@ export default function CartItem({ item, isCompact = false }: CartItemProps) {
     </div>
   )
 }
-    

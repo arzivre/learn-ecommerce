@@ -12,7 +12,7 @@ import { Separator } from '#/components/ui/separator'
 import { Button } from '#/components/ui/button'
 import { ShoppingBag } from 'lucide-react'
 import { Link } from '@tanstack/react-router'
-import CartItem from '#/components/base/store/cart/cart-item'
+import { CartItem } from '#/components/base/store/cart/cart-item'
 
 export function CartSheet() {
   //   const {

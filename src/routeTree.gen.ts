@@ -13,6 +13,7 @@ import { Route as AuthSignInRouteImport } from './routes/auth/sign-in'
 import { Route as storeLayoutRouteImport } from './routes/(store)/_layout'
 import { Route as storeLayoutIndexRouteImport } from './routes/(store)/_layout/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as storeLayoutCheckoutRouteImport } from './routes/(store)/_layout/checkout'
 import { Route as storeLayoutCartRouteImport } from './routes/(store)/_layout/cart'
 import { Route as storeLayoutStoreIndexRouteImport } from './routes/(store)/_layout/store/index'
 import { Route as storeLayoutProductIndexRouteImport } from './routes/(store)/_layout/product/index'
@@ -38,6 +39,11 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
+} as any)
+const storeLayoutCheckoutRoute = storeLayoutCheckoutRouteImport.update({
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => storeLayoutRoute,
 } as any)
 const storeLayoutCartRoute = storeLayoutCartRouteImport.update({
   id: '/cart',
@@ -74,6 +80,7 @@ const storeLayoutCategorySlugRoute = storeLayoutCategorySlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/auth/sign-in': typeof AuthSignInRoute
   '/cart': typeof storeLayoutCartRoute
+  '/checkout': typeof storeLayoutCheckoutRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/': typeof storeLayoutIndexRoute
   '/category/$slug': typeof storeLayoutCategorySlugRoute
@@ -85,6 +92,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/auth/sign-in': typeof AuthSignInRoute
   '/cart': typeof storeLayoutCartRoute
+  '/checkout': typeof storeLayoutCheckoutRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/': typeof storeLayoutIndexRoute
   '/category/$slug': typeof storeLayoutCategorySlugRoute
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/(store)/_layout': typeof storeLayoutRouteWithChildren
   '/auth/sign-in': typeof AuthSignInRoute
   '/(store)/_layout/cart': typeof storeLayoutCartRoute
+  '/(store)/_layout/checkout': typeof storeLayoutCheckoutRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/(store)/_layout/': typeof storeLayoutIndexRoute
   '/(store)/_layout/category/$slug': typeof storeLayoutCategorySlugRoute
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/auth/sign-in'
     | '/cart'
+    | '/checkout'
     | '/api/auth/$'
     | '/'
     | '/category/$slug'
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
   to:
     | '/auth/sign-in'
     | '/cart'
+    | '/checkout'
     | '/api/auth/$'
     | '/'
     | '/category/$slug'
@@ -134,6 +145,7 @@ export interface FileRouteTypes {
     | '/(store)/_layout'
     | '/auth/sign-in'
     | '/(store)/_layout/cart'
+    | '/(store)/_layout/checkout'
     | '/api/auth/$'
     | '/(store)/_layout/'
     | '/(store)/_layout/category/$slug'
@@ -178,6 +190,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/auth/$'
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/(store)/_layout/checkout': {
+      id: '/(store)/_layout/checkout'
+      path: '/checkout'
+      fullPath: '/checkout'
+      preLoaderRoute: typeof storeLayoutCheckoutRouteImport
+      parentRoute: typeof storeLayoutRoute
     }
     '/(store)/_layout/cart': {
       id: '/(store)/_layout/cart'
@@ -226,6 +245,7 @@ declare module '@tanstack/react-router' {
 
 interface storeLayoutRouteChildren {
   storeLayoutCartRoute: typeof storeLayoutCartRoute
+  storeLayoutCheckoutRoute: typeof storeLayoutCheckoutRoute
   storeLayoutIndexRoute: typeof storeLayoutIndexRoute
   storeLayoutCategorySlugRoute: typeof storeLayoutCategorySlugRoute
   storeLayoutProductProductIdRoute: typeof storeLayoutProductProductIdRoute
@@ -236,6 +256,7 @@ interface storeLayoutRouteChildren {
 
 const storeLayoutRouteChildren: storeLayoutRouteChildren = {
   storeLayoutCartRoute: storeLayoutCartRoute,
+  storeLayoutCheckoutRoute: storeLayoutCheckoutRoute,
   storeLayoutIndexRoute: storeLayoutIndexRoute,
   storeLayoutCategorySlugRoute: storeLayoutCategorySlugRoute,
   storeLayoutProductProductIdRoute: storeLayoutProductProductIdRoute,
