@@ -1,3 +1,4 @@
+import { CategoryDetailTemplate } from '@/components/templates/store/category/category-detail-template'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/(store)/_layout/category/$slug')({
@@ -5,5 +6,6 @@ export const Route = createFileRoute('/(store)/_layout/category/$slug')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/(store)/_layout/category/$slug"!</div>
+  const { slug } = Route.useParams()
+  return <CategoryDetailTemplate slug={slug} />
 }

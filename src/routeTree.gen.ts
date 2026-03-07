@@ -17,6 +17,7 @@ import { Route as storeLayoutCheckoutRouteImport } from './routes/(store)/_layou
 import { Route as storeLayoutCartRouteImport } from './routes/(store)/_layout/cart'
 import { Route as storeLayoutStoreIndexRouteImport } from './routes/(store)/_layout/store/index'
 import { Route as storeLayoutProductIndexRouteImport } from './routes/(store)/_layout/product/index'
+import { Route as storeLayoutCategoryIndexRouteImport } from './routes/(store)/_layout/category/index'
 import { Route as storeLayoutStoreSlugRouteImport } from './routes/(store)/_layout/store/$slug'
 import { Route as storeLayoutProductProductIdRouteImport } from './routes/(store)/_layout/product/$productId'
 import { Route as storeLayoutCategorySlugRouteImport } from './routes/(store)/_layout/category/$slug'
@@ -60,6 +61,12 @@ const storeLayoutProductIndexRoute = storeLayoutProductIndexRouteImport.update({
   path: '/product/',
   getParentRoute: () => storeLayoutRoute,
 } as any)
+const storeLayoutCategoryIndexRoute =
+  storeLayoutCategoryIndexRouteImport.update({
+    id: '/category/',
+    path: '/category/',
+    getParentRoute: () => storeLayoutRoute,
+  } as any)
 const storeLayoutStoreSlugRoute = storeLayoutStoreSlugRouteImport.update({
   id: '/store/$slug',
   path: '/store/$slug',
@@ -86,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/category/$slug': typeof storeLayoutCategorySlugRoute
   '/product/$productId': typeof storeLayoutProductProductIdRoute
   '/store/$slug': typeof storeLayoutStoreSlugRoute
+  '/category/': typeof storeLayoutCategoryIndexRoute
   '/product/': typeof storeLayoutProductIndexRoute
   '/store/': typeof storeLayoutStoreIndexRoute
 }
@@ -98,6 +106,7 @@ export interface FileRoutesByTo {
   '/category/$slug': typeof storeLayoutCategorySlugRoute
   '/product/$productId': typeof storeLayoutProductProductIdRoute
   '/store/$slug': typeof storeLayoutStoreSlugRoute
+  '/category': typeof storeLayoutCategoryIndexRoute
   '/product': typeof storeLayoutProductIndexRoute
   '/store': typeof storeLayoutStoreIndexRoute
 }
@@ -112,6 +121,7 @@ export interface FileRoutesById {
   '/(store)/_layout/category/$slug': typeof storeLayoutCategorySlugRoute
   '/(store)/_layout/product/$productId': typeof storeLayoutProductProductIdRoute
   '/(store)/_layout/store/$slug': typeof storeLayoutStoreSlugRoute
+  '/(store)/_layout/category/': typeof storeLayoutCategoryIndexRoute
   '/(store)/_layout/product/': typeof storeLayoutProductIndexRoute
   '/(store)/_layout/store/': typeof storeLayoutStoreIndexRoute
 }
@@ -126,6 +136,7 @@ export interface FileRouteTypes {
     | '/category/$slug'
     | '/product/$productId'
     | '/store/$slug'
+    | '/category/'
     | '/product/'
     | '/store/'
   fileRoutesByTo: FileRoutesByTo
@@ -138,6 +149,7 @@ export interface FileRouteTypes {
     | '/category/$slug'
     | '/product/$productId'
     | '/store/$slug'
+    | '/category'
     | '/product'
     | '/store'
   id:
@@ -151,6 +163,7 @@ export interface FileRouteTypes {
     | '/(store)/_layout/category/$slug'
     | '/(store)/_layout/product/$productId'
     | '/(store)/_layout/store/$slug'
+    | '/(store)/_layout/category/'
     | '/(store)/_layout/product/'
     | '/(store)/_layout/store/'
   fileRoutesById: FileRoutesById
@@ -219,6 +232,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof storeLayoutProductIndexRouteImport
       parentRoute: typeof storeLayoutRoute
     }
+    '/(store)/_layout/category/': {
+      id: '/(store)/_layout/category/'
+      path: '/category'
+      fullPath: '/category/'
+      preLoaderRoute: typeof storeLayoutCategoryIndexRouteImport
+      parentRoute: typeof storeLayoutRoute
+    }
     '/(store)/_layout/store/$slug': {
       id: '/(store)/_layout/store/$slug'
       path: '/store/$slug'
@@ -250,6 +270,7 @@ interface storeLayoutRouteChildren {
   storeLayoutCategorySlugRoute: typeof storeLayoutCategorySlugRoute
   storeLayoutProductProductIdRoute: typeof storeLayoutProductProductIdRoute
   storeLayoutStoreSlugRoute: typeof storeLayoutStoreSlugRoute
+  storeLayoutCategoryIndexRoute: typeof storeLayoutCategoryIndexRoute
   storeLayoutProductIndexRoute: typeof storeLayoutProductIndexRoute
   storeLayoutStoreIndexRoute: typeof storeLayoutStoreIndexRoute
 }
@@ -261,6 +282,7 @@ const storeLayoutRouteChildren: storeLayoutRouteChildren = {
   storeLayoutCategorySlugRoute: storeLayoutCategorySlugRoute,
   storeLayoutProductProductIdRoute: storeLayoutProductProductIdRoute,
   storeLayoutStoreSlugRoute: storeLayoutStoreSlugRoute,
+  storeLayoutCategoryIndexRoute: storeLayoutCategoryIndexRoute,
   storeLayoutProductIndexRoute: storeLayoutProductIndexRoute,
   storeLayoutStoreIndexRoute: storeLayoutStoreIndexRoute,
 }
