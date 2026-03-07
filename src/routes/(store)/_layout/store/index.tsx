@@ -1,3 +1,4 @@
+import { StoresListingTemplate } from '#/components/templates/store/storefront/stores-listing-template'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/(store)/_layout/store/')({
@@ -5,5 +6,5 @@ export const Route = createFileRoute('/(store)/_layout/store/')({
 })
 
 function RouteComponent() {
-  return <div>Hello "/(store)/_layout/store/"!</div>
+  return <StoresListingTemplate />
 }
