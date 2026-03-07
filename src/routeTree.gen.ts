@@ -13,6 +13,7 @@ import { Route as AuthSignInRouteImport } from './routes/auth/sign-in'
 import { Route as storeLayoutRouteImport } from './routes/(store)/_layout'
 import { Route as storeLayoutIndexRouteImport } from './routes/(store)/_layout/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as storeLayoutOrderConfirmationRouteImport } from './routes/(store)/_layout/order-confirmation'
 import { Route as storeLayoutCheckoutRouteImport } from './routes/(store)/_layout/checkout'
 import { Route as storeLayoutCartRouteImport } from './routes/(store)/_layout/cart'
 import { Route as storeLayoutStoreIndexRouteImport } from './routes/(store)/_layout/store/index'
@@ -41,6 +42,12 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const storeLayoutOrderConfirmationRoute =
+  storeLayoutOrderConfirmationRouteImport.update({
+    id: '/order-confirmation',
+    path: '/order-confirmation',
+    getParentRoute: () => storeLayoutRoute,
+  } as any)
 const storeLayoutCheckoutRoute = storeLayoutCheckoutRouteImport.update({
   id: '/checkout',
   path: '/checkout',
@@ -88,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/auth/sign-in': typeof AuthSignInRoute
   '/cart': typeof storeLayoutCartRoute
   '/checkout': typeof storeLayoutCheckoutRoute
+  '/order-confirmation': typeof storeLayoutOrderConfirmationRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/': typeof storeLayoutIndexRoute
   '/category/$slug': typeof storeLayoutCategorySlugRoute
@@ -101,6 +109,7 @@ export interface FileRoutesByTo {
   '/auth/sign-in': typeof AuthSignInRoute
   '/cart': typeof storeLayoutCartRoute
   '/checkout': typeof storeLayoutCheckoutRoute
+  '/order-confirmation': typeof storeLayoutOrderConfirmationRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/': typeof storeLayoutIndexRoute
   '/category/$slug': typeof storeLayoutCategorySlugRoute
@@ -116,6 +125,7 @@ export interface FileRoutesById {
   '/auth/sign-in': typeof AuthSignInRoute
   '/(store)/_layout/cart': typeof storeLayoutCartRoute
   '/(store)/_layout/checkout': typeof storeLayoutCheckoutRoute
+  '/(store)/_layout/order-confirmation': typeof storeLayoutOrderConfirmationRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/(store)/_layout/': typeof storeLayoutIndexRoute
   '/(store)/_layout/category/$slug': typeof storeLayoutCategorySlugRoute
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/auth/sign-in'
     | '/cart'
     | '/checkout'
+    | '/order-confirmation'
     | '/api/auth/$'
     | '/'
     | '/category/$slug'
@@ -144,6 +155,7 @@ export interface FileRouteTypes {
     | '/auth/sign-in'
     | '/cart'
     | '/checkout'
+    | '/order-confirmation'
     | '/api/auth/$'
     | '/'
     | '/category/$slug'
@@ -158,6 +170,7 @@ export interface FileRouteTypes {
     | '/auth/sign-in'
     | '/(store)/_layout/cart'
     | '/(store)/_layout/checkout'
+    | '/(store)/_layout/order-confirmation'
     | '/api/auth/$'
     | '/(store)/_layout/'
     | '/(store)/_layout/category/$slug'
@@ -203,6 +216,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/auth/$'
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/(store)/_layout/order-confirmation': {
+      id: '/(store)/_layout/order-confirmation'
+      path: '/order-confirmation'
+      fullPath: '/order-confirmation'
+      preLoaderRoute: typeof storeLayoutOrderConfirmationRouteImport
+      parentRoute: typeof storeLayoutRoute
     }
     '/(store)/_layout/checkout': {
       id: '/(store)/_layout/checkout'
@@ -266,6 +286,7 @@ declare module '@tanstack/react-router' {
 interface storeLayoutRouteChildren {
   storeLayoutCartRoute: typeof storeLayoutCartRoute
   storeLayoutCheckoutRoute: typeof storeLayoutCheckoutRoute
+  storeLayoutOrderConfirmationRoute: typeof storeLayoutOrderConfirmationRoute
   storeLayoutIndexRoute: typeof storeLayoutIndexRoute
   storeLayoutCategorySlugRoute: typeof storeLayoutCategorySlugRoute
   storeLayoutProductProductIdRoute: typeof storeLayoutProductProductIdRoute
@@ -278,6 +299,7 @@ interface storeLayoutRouteChildren {
 const storeLayoutRouteChildren: storeLayoutRouteChildren = {
   storeLayoutCartRoute: storeLayoutCartRoute,
   storeLayoutCheckoutRoute: storeLayoutCheckoutRoute,
+  storeLayoutOrderConfirmationRoute: storeLayoutOrderConfirmationRoute,
   storeLayoutIndexRoute: storeLayoutIndexRoute,
   storeLayoutCategorySlugRoute: storeLayoutCategorySlugRoute,
   storeLayoutProductProductIdRoute: storeLayoutProductProductIdRoute,
