@@ -24,6 +24,8 @@
     "@fontsource-variable/roboto": "^5.2.10",
     "@fontsource-variable/roboto-mono": "^5.2.8",
     "@neondatabase/serverless": "^1.0.0",
+    "@radix-ui/react-select": "^2.2.6",
+    "@radix-ui/react-slot": "^1.2.4",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/match-sorter-utils": "^8.19.4",
     "@tanstack/react-devtools": "^0.7.0",
