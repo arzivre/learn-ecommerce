@@ -1,17 +1,17 @@
 import { Button } from '@/components/ui/button'
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from '@/components/ui/dialog'
 import {
-    Field,
-    FieldError,
-    FieldGroup,
-    FieldLabel,
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
 } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
@@ -107,7 +107,7 @@ export function AddAttributeDialog({
         <form
           onSubmit={(e) => {
             e.preventDefault()
-            e.stopPropagation
+            e.stopPropagation()
             form.handleSubmit()
           }}
           className="space-y-6"
