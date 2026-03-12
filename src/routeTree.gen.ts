@@ -10,9 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthSignInRouteImport } from './routes/auth/sign-in'
+import { Route as vendorLayoutRouteImport } from './routes/(vendor)/_layout'
 import { Route as storeLayoutRouteImport } from './routes/(store)/_layout'
 import { Route as storeLayoutIndexRouteImport } from './routes/(store)/_layout/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as vendorLayoutDashboardRouteImport } from './routes/(vendor)/_layout/dashboard'
 import { Route as storeLayoutWishlistRouteImport } from './routes/(store)/_layout/wishlist'
 import { Route as storeLayoutProfileRouteImport } from './routes/(store)/_layout/profile'
 import { Route as storeLayoutOrdersRouteImport } from './routes/(store)/_layout/orders'
@@ -32,6 +34,10 @@ const AuthSignInRoute = AuthSignInRouteImport.update({
   path: '/auth/sign-in',
   getParentRoute: () => rootRouteImport,
 } as any)
+const vendorLayoutRoute = vendorLayoutRouteImport.update({
+  id: '/(vendor)/_layout',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const storeLayoutRoute = storeLayoutRouteImport.update({
   id: '/(store)/_layout',
   getParentRoute: () => rootRouteImport,
@@ -45,6 +51,11 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
+} as any)
+const vendorLayoutDashboardRoute = vendorLayoutDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => vendorLayoutRoute,
 } as any)
 const storeLayoutWishlistRoute = storeLayoutWishlistRouteImport.update({
   id: '/wishlist',
@@ -125,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/orders': typeof storeLayoutOrdersRoute
   '/profile': typeof storeLayoutProfileRoute
   '/wishlist': typeof storeLayoutWishlistRoute
+  '/dashboard': typeof vendorLayoutDashboardRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/': typeof storeLayoutIndexRoute
   '/category/$slug': typeof storeLayoutCategorySlugRoute
@@ -143,6 +155,7 @@ export interface FileRoutesByTo {
   '/orders': typeof storeLayoutOrdersRoute
   '/profile': typeof storeLayoutProfileRoute
   '/wishlist': typeof storeLayoutWishlistRoute
+  '/dashboard': typeof vendorLayoutDashboardRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/': typeof storeLayoutIndexRoute
   '/category/$slug': typeof storeLayoutCategorySlugRoute
@@ -155,6 +168,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/(store)/_layout': typeof storeLayoutRouteWithChildren
+  '/(vendor)/_layout': typeof vendorLayoutRouteWithChildren
   '/auth/sign-in': typeof AuthSignInRoute
   '/(store)/_layout/cart': typeof storeLayoutCartRoute
   '/(store)/_layout/checkout': typeof storeLayoutCheckoutRoute
@@ -163,6 +177,7 @@ export interface FileRoutesById {
   '/(store)/_layout/orders': typeof storeLayoutOrdersRoute
   '/(store)/_layout/profile': typeof storeLayoutProfileRoute
   '/(store)/_layout/wishlist': typeof storeLayoutWishlistRoute
+  '/(vendor)/_layout/dashboard': typeof vendorLayoutDashboardRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/(store)/_layout/': typeof storeLayoutIndexRoute
   '/(store)/_layout/category/$slug': typeof storeLayoutCategorySlugRoute
@@ -183,6 +198,7 @@ export interface FileRouteTypes {
     | '/orders'
     | '/profile'
     | '/wishlist'
+    | '/dashboard'
     | '/api/auth/$'
     | '/'
     | '/category/$slug'
@@ -201,6 +217,7 @@ export interface FileRouteTypes {
     | '/orders'
     | '/profile'
     | '/wishlist'
+    | '/dashboard'
     | '/api/auth/$'
     | '/'
     | '/category/$slug'
@@ -212,6 +229,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/(store)/_layout'
+    | '/(vendor)/_layout'
     | '/auth/sign-in'
     | '/(store)/_layout/cart'
     | '/(store)/_layout/checkout'
@@ -220,6 +238,7 @@ export interface FileRouteTypes {
     | '/(store)/_layout/orders'
     | '/(store)/_layout/profile'
     | '/(store)/_layout/wishlist'
+    | '/(vendor)/_layout/dashboard'
     | '/api/auth/$'
     | '/(store)/_layout/'
     | '/(store)/_layout/category/$slug'
@@ -232,6 +251,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   storeLayoutRoute: typeof storeLayoutRouteWithChildren
+  vendorLayoutRoute: typeof vendorLayoutRouteWithChildren
   AuthSignInRoute: typeof AuthSignInRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
@@ -243,6 +263,13 @@ declare module '@tanstack/react-router' {
       path: '/auth/sign-in'
       fullPath: '/auth/sign-in'
       preLoaderRoute: typeof AuthSignInRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(vendor)/_layout': {
+      id: '/(vendor)/_layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof vendorLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(store)/_layout': {
@@ -265,6 +292,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/auth/$'
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/(vendor)/_layout/dashboard': {
+      id: '/(vendor)/_layout/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof vendorLayoutDashboardRouteImport
+      parentRoute: typeof vendorLayoutRoute
     }
     '/(store)/_layout/wishlist': {
       id: '/(store)/_layout/wishlist'
@@ -398,8 +432,21 @@ const storeLayoutRouteWithChildren = storeLayoutRoute._addFileChildren(
   storeLayoutRouteChildren,
 )
 
+interface vendorLayoutRouteChildren {
+  vendorLayoutDashboardRoute: typeof vendorLayoutDashboardRoute
+}
+
+const vendorLayoutRouteChildren: vendorLayoutRouteChildren = {
+  vendorLayoutDashboardRoute: vendorLayoutDashboardRoute,
+}
+
+const vendorLayoutRouteWithChildren = vendorLayoutRoute._addFileChildren(
+  vendorLayoutRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   storeLayoutRoute: storeLayoutRouteWithChildren,
+  vendorLayoutRoute: vendorLayoutRouteWithChildren,
   AuthSignInRoute: AuthSignInRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
