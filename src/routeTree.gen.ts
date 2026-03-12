@@ -14,6 +14,8 @@ import { Route as vendorLayoutRouteImport } from './routes/(vendor)/_layout'
 import { Route as storeLayoutRouteImport } from './routes/(store)/_layout'
 import { Route as storeLayoutIndexRouteImport } from './routes/(store)/_layout/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as vendorShopSlugRouteImport } from './routes/(vendor)/shop/$slug'
+import { Route as vendorLayoutMyShopRouteImport } from './routes/(vendor)/_layout/my-shop'
 import { Route as vendorLayoutDashboardRouteImport } from './routes/(vendor)/_layout/dashboard'
 import { Route as storeLayoutWishlistRouteImport } from './routes/(store)/_layout/wishlist'
 import { Route as storeLayoutProfileRouteImport } from './routes/(store)/_layout/profile'
@@ -22,6 +24,7 @@ import { Route as storeLayoutOrderTrackingRouteImport } from './routes/(store)/_
 import { Route as storeLayoutOrderConfirmationRouteImport } from './routes/(store)/_layout/order-confirmation'
 import { Route as storeLayoutCheckoutRouteImport } from './routes/(store)/_layout/checkout'
 import { Route as storeLayoutCartRouteImport } from './routes/(store)/_layout/cart'
+import { Route as vendorShopSlugIndexRouteImport } from './routes/(vendor)/shop/$slug/index'
 import { Route as storeLayoutStoreIndexRouteImport } from './routes/(store)/_layout/store/index'
 import { Route as storeLayoutProductIndexRouteImport } from './routes/(store)/_layout/product/index'
 import { Route as storeLayoutCategoryIndexRouteImport } from './routes/(store)/_layout/category/index'
@@ -51,6 +54,16 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   id: '/api/auth/$',
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
+} as any)
+const vendorShopSlugRoute = vendorShopSlugRouteImport.update({
+  id: '/(vendor)/shop/$slug',
+  path: '/shop/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const vendorLayoutMyShopRoute = vendorLayoutMyShopRouteImport.update({
+  id: '/my-shop',
+  path: '/my-shop',
+  getParentRoute: () => vendorLayoutRoute,
 } as any)
 const vendorLayoutDashboardRoute = vendorLayoutDashboardRouteImport.update({
   id: '/dashboard',
@@ -93,6 +106,11 @@ const storeLayoutCartRoute = storeLayoutCartRouteImport.update({
   id: '/cart',
   path: '/cart',
   getParentRoute: () => storeLayoutRoute,
+} as any)
+const vendorShopSlugIndexRoute = vendorShopSlugIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => vendorShopSlugRoute,
 } as any)
 const storeLayoutStoreIndexRoute = storeLayoutStoreIndexRouteImport.update({
   id: '/store/',
@@ -137,6 +155,8 @@ export interface FileRoutesByFullPath {
   '/profile': typeof storeLayoutProfileRoute
   '/wishlist': typeof storeLayoutWishlistRoute
   '/dashboard': typeof vendorLayoutDashboardRoute
+  '/my-shop': typeof vendorLayoutMyShopRoute
+  '/shop/$slug': typeof vendorShopSlugRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/': typeof storeLayoutIndexRoute
   '/category/$slug': typeof storeLayoutCategorySlugRoute
@@ -145,6 +165,7 @@ export interface FileRoutesByFullPath {
   '/category/': typeof storeLayoutCategoryIndexRoute
   '/product/': typeof storeLayoutProductIndexRoute
   '/store/': typeof storeLayoutStoreIndexRoute
+  '/shop/$slug/': typeof vendorShopSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/auth/sign-in': typeof AuthSignInRoute
@@ -156,6 +177,7 @@ export interface FileRoutesByTo {
   '/profile': typeof storeLayoutProfileRoute
   '/wishlist': typeof storeLayoutWishlistRoute
   '/dashboard': typeof vendorLayoutDashboardRoute
+  '/my-shop': typeof vendorLayoutMyShopRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/': typeof storeLayoutIndexRoute
   '/category/$slug': typeof storeLayoutCategorySlugRoute
@@ -164,6 +186,7 @@ export interface FileRoutesByTo {
   '/category': typeof storeLayoutCategoryIndexRoute
   '/product': typeof storeLayoutProductIndexRoute
   '/store': typeof storeLayoutStoreIndexRoute
+  '/shop/$slug': typeof vendorShopSlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -178,6 +201,8 @@ export interface FileRoutesById {
   '/(store)/_layout/profile': typeof storeLayoutProfileRoute
   '/(store)/_layout/wishlist': typeof storeLayoutWishlistRoute
   '/(vendor)/_layout/dashboard': typeof vendorLayoutDashboardRoute
+  '/(vendor)/_layout/my-shop': typeof vendorLayoutMyShopRoute
+  '/(vendor)/shop/$slug': typeof vendorShopSlugRouteWithChildren
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/(store)/_layout/': typeof storeLayoutIndexRoute
   '/(store)/_layout/category/$slug': typeof storeLayoutCategorySlugRoute
@@ -186,6 +211,7 @@ export interface FileRoutesById {
   '/(store)/_layout/category/': typeof storeLayoutCategoryIndexRoute
   '/(store)/_layout/product/': typeof storeLayoutProductIndexRoute
   '/(store)/_layout/store/': typeof storeLayoutStoreIndexRoute
+  '/(vendor)/shop/$slug/': typeof vendorShopSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -199,6 +225,8 @@ export interface FileRouteTypes {
     | '/profile'
     | '/wishlist'
     | '/dashboard'
+    | '/my-shop'
+    | '/shop/$slug'
     | '/api/auth/$'
     | '/'
     | '/category/$slug'
@@ -207,6 +235,7 @@ export interface FileRouteTypes {
     | '/category/'
     | '/product/'
     | '/store/'
+    | '/shop/$slug/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth/sign-in'
@@ -218,6 +247,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/wishlist'
     | '/dashboard'
+    | '/my-shop'
     | '/api/auth/$'
     | '/'
     | '/category/$slug'
@@ -226,6 +256,7 @@ export interface FileRouteTypes {
     | '/category'
     | '/product'
     | '/store'
+    | '/shop/$slug'
   id:
     | '__root__'
     | '/(store)/_layout'
@@ -239,6 +270,8 @@ export interface FileRouteTypes {
     | '/(store)/_layout/profile'
     | '/(store)/_layout/wishlist'
     | '/(vendor)/_layout/dashboard'
+    | '/(vendor)/_layout/my-shop'
+    | '/(vendor)/shop/$slug'
     | '/api/auth/$'
     | '/(store)/_layout/'
     | '/(store)/_layout/category/$slug'
@@ -247,12 +280,14 @@ export interface FileRouteTypes {
     | '/(store)/_layout/category/'
     | '/(store)/_layout/product/'
     | '/(store)/_layout/store/'
+    | '/(vendor)/shop/$slug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   storeLayoutRoute: typeof storeLayoutRouteWithChildren
   vendorLayoutRoute: typeof vendorLayoutRouteWithChildren
   AuthSignInRoute: typeof AuthSignInRoute
+  vendorShopSlugRoute: typeof vendorShopSlugRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -292,6 +327,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/auth/$'
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/(vendor)/shop/$slug': {
+      id: '/(vendor)/shop/$slug'
+      path: '/shop/$slug'
+      fullPath: '/shop/$slug'
+      preLoaderRoute: typeof vendorShopSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(vendor)/_layout/my-shop': {
+      id: '/(vendor)/_layout/my-shop'
+      path: '/my-shop'
+      fullPath: '/my-shop'
+      preLoaderRoute: typeof vendorLayoutMyShopRouteImport
+      parentRoute: typeof vendorLayoutRoute
     }
     '/(vendor)/_layout/dashboard': {
       id: '/(vendor)/_layout/dashboard'
@@ -348,6 +397,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/cart'
       preLoaderRoute: typeof storeLayoutCartRouteImport
       parentRoute: typeof storeLayoutRoute
+    }
+    '/(vendor)/shop/$slug/': {
+      id: '/(vendor)/shop/$slug/'
+      path: '/'
+      fullPath: '/shop/$slug/'
+      preLoaderRoute: typeof vendorShopSlugIndexRouteImport
+      parentRoute: typeof vendorShopSlugRoute
     }
     '/(store)/_layout/store/': {
       id: '/(store)/_layout/store/'
@@ -434,20 +490,35 @@ const storeLayoutRouteWithChildren = storeLayoutRoute._addFileChildren(
 
 interface vendorLayoutRouteChildren {
   vendorLayoutDashboardRoute: typeof vendorLayoutDashboardRoute
+  vendorLayoutMyShopRoute: typeof vendorLayoutMyShopRoute
 }
 
 const vendorLayoutRouteChildren: vendorLayoutRouteChildren = {
   vendorLayoutDashboardRoute: vendorLayoutDashboardRoute,
+  vendorLayoutMyShopRoute: vendorLayoutMyShopRoute,
 }
 
 const vendorLayoutRouteWithChildren = vendorLayoutRoute._addFileChildren(
   vendorLayoutRouteChildren,
 )
 
+interface vendorShopSlugRouteChildren {
+  vendorShopSlugIndexRoute: typeof vendorShopSlugIndexRoute
+}
+
+const vendorShopSlugRouteChildren: vendorShopSlugRouteChildren = {
+  vendorShopSlugIndexRoute: vendorShopSlugIndexRoute,
+}
+
+const vendorShopSlugRouteWithChildren = vendorShopSlugRoute._addFileChildren(
+  vendorShopSlugRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   storeLayoutRoute: storeLayoutRouteWithChildren,
   vendorLayoutRoute: vendorLayoutRouteWithChildren,
   AuthSignInRoute: AuthSignInRoute,
+  vendorShopSlugRoute: vendorShopSlugRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
