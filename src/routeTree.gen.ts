@@ -28,13 +28,22 @@ import { Route as vendorShopSlugIndexRouteImport } from './routes/(vendor)/shop/
 import { Route as storeLayoutStoreIndexRouteImport } from './routes/(store)/_layout/store/index'
 import { Route as storeLayoutProductIndexRouteImport } from './routes/(store)/_layout/product/index'
 import { Route as storeLayoutCategoryIndexRouteImport } from './routes/(store)/_layout/category/index'
+import { Route as vendorShopSlugTransactionsRouteImport } from './routes/(vendor)/shop/$slug/transactions'
+import { Route as vendorShopSlugTaxesRouteImport } from './routes/(vendor)/shop/$slug/taxes'
+import { Route as vendorShopSlugTagsRouteImport } from './routes/(vendor)/shop/$slug/tags'
+import { Route as vendorShopSlugStaffRouteImport } from './routes/(vendor)/shop/$slug/staff'
+import { Route as vendorShopSlugShippingRouteImport } from './routes/(vendor)/shop/$slug/shipping'
+import { Route as vendorShopSlugReviewsRouteImport } from './routes/(vendor)/shop/$slug/reviews'
 import { Route as vendorShopSlugProductsRouteImport } from './routes/(vendor)/shop/$slug/products'
+import { Route as vendorShopSlugCouponsRouteImport } from './routes/(vendor)/shop/$slug/coupons'
 import { Route as vendorShopSlugCategoriesRouteImport } from './routes/(vendor)/shop/$slug/categories'
 import { Route as vendorShopSlugBrandsRouteImport } from './routes/(vendor)/shop/$slug/brands'
 import { Route as vendorShopSlugAttributesRouteImport } from './routes/(vendor)/shop/$slug/attributes'
 import { Route as storeLayoutStoreSlugRouteImport } from './routes/(store)/_layout/store/$slug'
 import { Route as storeLayoutProductProductIdRouteImport } from './routes/(store)/_layout/product/$productId'
 import { Route as storeLayoutCategorySlugRouteImport } from './routes/(store)/_layout/category/$slug'
+import { Route as vendorShopSlugOrdersIndexRouteImport } from './routes/(vendor)/shop/$slug/orders/index'
+import { Route as vendorShopSlugOrdersOrderIdRouteImport } from './routes/(vendor)/shop/$slug/orders/$orderId'
 
 const AuthSignInRoute = AuthSignInRouteImport.update({
   id: '/auth/sign-in',
@@ -132,9 +141,45 @@ const storeLayoutCategoryIndexRoute =
     path: '/category/',
     getParentRoute: () => storeLayoutRoute,
   } as any)
+const vendorShopSlugTransactionsRoute =
+  vendorShopSlugTransactionsRouteImport.update({
+    id: '/transactions',
+    path: '/transactions',
+    getParentRoute: () => vendorShopSlugRoute,
+  } as any)
+const vendorShopSlugTaxesRoute = vendorShopSlugTaxesRouteImport.update({
+  id: '/taxes',
+  path: '/taxes',
+  getParentRoute: () => vendorShopSlugRoute,
+} as any)
+const vendorShopSlugTagsRoute = vendorShopSlugTagsRouteImport.update({
+  id: '/tags',
+  path: '/tags',
+  getParentRoute: () => vendorShopSlugRoute,
+} as any)
+const vendorShopSlugStaffRoute = vendorShopSlugStaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => vendorShopSlugRoute,
+} as any)
+const vendorShopSlugShippingRoute = vendorShopSlugShippingRouteImport.update({
+  id: '/shipping',
+  path: '/shipping',
+  getParentRoute: () => vendorShopSlugRoute,
+} as any)
+const vendorShopSlugReviewsRoute = vendorShopSlugReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => vendorShopSlugRoute,
+} as any)
 const vendorShopSlugProductsRoute = vendorShopSlugProductsRouteImport.update({
   id: '/products',
   path: '/products',
+  getParentRoute: () => vendorShopSlugRoute,
+} as any)
+const vendorShopSlugCouponsRoute = vendorShopSlugCouponsRouteImport.update({
+  id: '/coupons',
+  path: '/coupons',
   getParentRoute: () => vendorShopSlugRoute,
 } as any)
 const vendorShopSlugCategoriesRoute =
@@ -170,6 +215,18 @@ const storeLayoutCategorySlugRoute = storeLayoutCategorySlugRouteImport.update({
   path: '/category/$slug',
   getParentRoute: () => storeLayoutRoute,
 } as any)
+const vendorShopSlugOrdersIndexRoute =
+  vendorShopSlugOrdersIndexRouteImport.update({
+    id: '/orders/',
+    path: '/orders/',
+    getParentRoute: () => vendorShopSlugRoute,
+  } as any)
+const vendorShopSlugOrdersOrderIdRoute =
+  vendorShopSlugOrdersOrderIdRouteImport.update({
+    id: '/orders/$orderId',
+    path: '/orders/$orderId',
+    getParentRoute: () => vendorShopSlugRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/auth/sign-in': typeof AuthSignInRoute
@@ -191,11 +248,20 @@ export interface FileRoutesByFullPath {
   '/shop/$slug/attributes': typeof vendorShopSlugAttributesRoute
   '/shop/$slug/brands': typeof vendorShopSlugBrandsRoute
   '/shop/$slug/categories': typeof vendorShopSlugCategoriesRoute
+  '/shop/$slug/coupons': typeof vendorShopSlugCouponsRoute
   '/shop/$slug/products': typeof vendorShopSlugProductsRoute
+  '/shop/$slug/reviews': typeof vendorShopSlugReviewsRoute
+  '/shop/$slug/shipping': typeof vendorShopSlugShippingRoute
+  '/shop/$slug/staff': typeof vendorShopSlugStaffRoute
+  '/shop/$slug/tags': typeof vendorShopSlugTagsRoute
+  '/shop/$slug/taxes': typeof vendorShopSlugTaxesRoute
+  '/shop/$slug/transactions': typeof vendorShopSlugTransactionsRoute
   '/category/': typeof storeLayoutCategoryIndexRoute
   '/product/': typeof storeLayoutProductIndexRoute
   '/store/': typeof storeLayoutStoreIndexRoute
   '/shop/$slug/': typeof vendorShopSlugIndexRoute
+  '/shop/$slug/orders/$orderId': typeof vendorShopSlugOrdersOrderIdRoute
+  '/shop/$slug/orders/': typeof vendorShopSlugOrdersIndexRoute
 }
 export interface FileRoutesByTo {
   '/auth/sign-in': typeof AuthSignInRoute
@@ -216,11 +282,20 @@ export interface FileRoutesByTo {
   '/shop/$slug/attributes': typeof vendorShopSlugAttributesRoute
   '/shop/$slug/brands': typeof vendorShopSlugBrandsRoute
   '/shop/$slug/categories': typeof vendorShopSlugCategoriesRoute
+  '/shop/$slug/coupons': typeof vendorShopSlugCouponsRoute
   '/shop/$slug/products': typeof vendorShopSlugProductsRoute
+  '/shop/$slug/reviews': typeof vendorShopSlugReviewsRoute
+  '/shop/$slug/shipping': typeof vendorShopSlugShippingRoute
+  '/shop/$slug/staff': typeof vendorShopSlugStaffRoute
+  '/shop/$slug/tags': typeof vendorShopSlugTagsRoute
+  '/shop/$slug/taxes': typeof vendorShopSlugTaxesRoute
+  '/shop/$slug/transactions': typeof vendorShopSlugTransactionsRoute
   '/category': typeof storeLayoutCategoryIndexRoute
   '/product': typeof storeLayoutProductIndexRoute
   '/store': typeof storeLayoutStoreIndexRoute
   '/shop/$slug': typeof vendorShopSlugIndexRoute
+  '/shop/$slug/orders/$orderId': typeof vendorShopSlugOrdersOrderIdRoute
+  '/shop/$slug/orders': typeof vendorShopSlugOrdersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -245,11 +320,20 @@ export interface FileRoutesById {
   '/(vendor)/shop/$slug/attributes': typeof vendorShopSlugAttributesRoute
   '/(vendor)/shop/$slug/brands': typeof vendorShopSlugBrandsRoute
   '/(vendor)/shop/$slug/categories': typeof vendorShopSlugCategoriesRoute
+  '/(vendor)/shop/$slug/coupons': typeof vendorShopSlugCouponsRoute
   '/(vendor)/shop/$slug/products': typeof vendorShopSlugProductsRoute
+  '/(vendor)/shop/$slug/reviews': typeof vendorShopSlugReviewsRoute
+  '/(vendor)/shop/$slug/shipping': typeof vendorShopSlugShippingRoute
+  '/(vendor)/shop/$slug/staff': typeof vendorShopSlugStaffRoute
+  '/(vendor)/shop/$slug/tags': typeof vendorShopSlugTagsRoute
+  '/(vendor)/shop/$slug/taxes': typeof vendorShopSlugTaxesRoute
+  '/(vendor)/shop/$slug/transactions': typeof vendorShopSlugTransactionsRoute
   '/(store)/_layout/category/': typeof storeLayoutCategoryIndexRoute
   '/(store)/_layout/product/': typeof storeLayoutProductIndexRoute
   '/(store)/_layout/store/': typeof storeLayoutStoreIndexRoute
   '/(vendor)/shop/$slug/': typeof vendorShopSlugIndexRoute
+  '/(vendor)/shop/$slug/orders/$orderId': typeof vendorShopSlugOrdersOrderIdRoute
+  '/(vendor)/shop/$slug/orders/': typeof vendorShopSlugOrdersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -273,11 +357,20 @@ export interface FileRouteTypes {
     | '/shop/$slug/attributes'
     | '/shop/$slug/brands'
     | '/shop/$slug/categories'
+    | '/shop/$slug/coupons'
     | '/shop/$slug/products'
+    | '/shop/$slug/reviews'
+    | '/shop/$slug/shipping'
+    | '/shop/$slug/staff'
+    | '/shop/$slug/tags'
+    | '/shop/$slug/taxes'
+    | '/shop/$slug/transactions'
     | '/category/'
     | '/product/'
     | '/store/'
     | '/shop/$slug/'
+    | '/shop/$slug/orders/$orderId'
+    | '/shop/$slug/orders/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth/sign-in'
@@ -298,11 +391,20 @@ export interface FileRouteTypes {
     | '/shop/$slug/attributes'
     | '/shop/$slug/brands'
     | '/shop/$slug/categories'
+    | '/shop/$slug/coupons'
     | '/shop/$slug/products'
+    | '/shop/$slug/reviews'
+    | '/shop/$slug/shipping'
+    | '/shop/$slug/staff'
+    | '/shop/$slug/tags'
+    | '/shop/$slug/taxes'
+    | '/shop/$slug/transactions'
     | '/category'
     | '/product'
     | '/store'
     | '/shop/$slug'
+    | '/shop/$slug/orders/$orderId'
+    | '/shop/$slug/orders'
   id:
     | '__root__'
     | '/(store)/_layout'
@@ -326,11 +428,20 @@ export interface FileRouteTypes {
     | '/(vendor)/shop/$slug/attributes'
     | '/(vendor)/shop/$slug/brands'
     | '/(vendor)/shop/$slug/categories'
+    | '/(vendor)/shop/$slug/coupons'
     | '/(vendor)/shop/$slug/products'
+    | '/(vendor)/shop/$slug/reviews'
+    | '/(vendor)/shop/$slug/shipping'
+    | '/(vendor)/shop/$slug/staff'
+    | '/(vendor)/shop/$slug/tags'
+    | '/(vendor)/shop/$slug/taxes'
+    | '/(vendor)/shop/$slug/transactions'
     | '/(store)/_layout/category/'
     | '/(store)/_layout/product/'
     | '/(store)/_layout/store/'
     | '/(vendor)/shop/$slug/'
+    | '/(vendor)/shop/$slug/orders/$orderId'
+    | '/(vendor)/shop/$slug/orders/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -476,11 +587,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof storeLayoutCategoryIndexRouteImport
       parentRoute: typeof storeLayoutRoute
     }
+    '/(vendor)/shop/$slug/transactions': {
+      id: '/(vendor)/shop/$slug/transactions'
+      path: '/transactions'
+      fullPath: '/shop/$slug/transactions'
+      preLoaderRoute: typeof vendorShopSlugTransactionsRouteImport
+      parentRoute: typeof vendorShopSlugRoute
+    }
+    '/(vendor)/shop/$slug/taxes': {
+      id: '/(vendor)/shop/$slug/taxes'
+      path: '/taxes'
+      fullPath: '/shop/$slug/taxes'
+      preLoaderRoute: typeof vendorShopSlugTaxesRouteImport
+      parentRoute: typeof vendorShopSlugRoute
+    }
+    '/(vendor)/shop/$slug/tags': {
+      id: '/(vendor)/shop/$slug/tags'
+      path: '/tags'
+      fullPath: '/shop/$slug/tags'
+      preLoaderRoute: typeof vendorShopSlugTagsRouteImport
+      parentRoute: typeof vendorShopSlugRoute
+    }
+    '/(vendor)/shop/$slug/staff': {
+      id: '/(vendor)/shop/$slug/staff'
+      path: '/staff'
+      fullPath: '/shop/$slug/staff'
+      preLoaderRoute: typeof vendorShopSlugStaffRouteImport
+      parentRoute: typeof vendorShopSlugRoute
+    }
+    '/(vendor)/shop/$slug/shipping': {
+      id: '/(vendor)/shop/$slug/shipping'
+      path: '/shipping'
+      fullPath: '/shop/$slug/shipping'
+      preLoaderRoute: typeof vendorShopSlugShippingRouteImport
+      parentRoute: typeof vendorShopSlugRoute
+    }
+    '/(vendor)/shop/$slug/reviews': {
+      id: '/(vendor)/shop/$slug/reviews'
+      path: '/reviews'
+      fullPath: '/shop/$slug/reviews'
+      preLoaderRoute: typeof vendorShopSlugReviewsRouteImport
+      parentRoute: typeof vendorShopSlugRoute
+    }
     '/(vendor)/shop/$slug/products': {
       id: '/(vendor)/shop/$slug/products'
       path: '/products'
       fullPath: '/shop/$slug/products'
       preLoaderRoute: typeof vendorShopSlugProductsRouteImport
+      parentRoute: typeof vendorShopSlugRoute
+    }
+    '/(vendor)/shop/$slug/coupons': {
+      id: '/(vendor)/shop/$slug/coupons'
+      path: '/coupons'
+      fullPath: '/shop/$slug/coupons'
+      preLoaderRoute: typeof vendorShopSlugCouponsRouteImport
       parentRoute: typeof vendorShopSlugRoute
     }
     '/(vendor)/shop/$slug/categories': {
@@ -524,6 +684,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/category/$slug'
       preLoaderRoute: typeof storeLayoutCategorySlugRouteImport
       parentRoute: typeof storeLayoutRoute
+    }
+    '/(vendor)/shop/$slug/orders/': {
+      id: '/(vendor)/shop/$slug/orders/'
+      path: '/orders'
+      fullPath: '/shop/$slug/orders/'
+      preLoaderRoute: typeof vendorShopSlugOrdersIndexRouteImport
+      parentRoute: typeof vendorShopSlugRoute
+    }
+    '/(vendor)/shop/$slug/orders/$orderId': {
+      id: '/(vendor)/shop/$slug/orders/$orderId'
+      path: '/orders/$orderId'
+      fullPath: '/shop/$slug/orders/$orderId'
+      preLoaderRoute: typeof vendorShopSlugOrdersOrderIdRouteImport
+      parentRoute: typeof vendorShopSlugRoute
     }
   }
 }
@@ -584,16 +758,34 @@ interface vendorShopSlugRouteChildren {
   vendorShopSlugAttributesRoute: typeof vendorShopSlugAttributesRoute
   vendorShopSlugBrandsRoute: typeof vendorShopSlugBrandsRoute
   vendorShopSlugCategoriesRoute: typeof vendorShopSlugCategoriesRoute
+  vendorShopSlugCouponsRoute: typeof vendorShopSlugCouponsRoute
   vendorShopSlugProductsRoute: typeof vendorShopSlugProductsRoute
+  vendorShopSlugReviewsRoute: typeof vendorShopSlugReviewsRoute
+  vendorShopSlugShippingRoute: typeof vendorShopSlugShippingRoute
+  vendorShopSlugStaffRoute: typeof vendorShopSlugStaffRoute
+  vendorShopSlugTagsRoute: typeof vendorShopSlugTagsRoute
+  vendorShopSlugTaxesRoute: typeof vendorShopSlugTaxesRoute
+  vendorShopSlugTransactionsRoute: typeof vendorShopSlugTransactionsRoute
   vendorShopSlugIndexRoute: typeof vendorShopSlugIndexRoute
+  vendorShopSlugOrdersOrderIdRoute: typeof vendorShopSlugOrdersOrderIdRoute
+  vendorShopSlugOrdersIndexRoute: typeof vendorShopSlugOrdersIndexRoute
 }
 
 const vendorShopSlugRouteChildren: vendorShopSlugRouteChildren = {
   vendorShopSlugAttributesRoute: vendorShopSlugAttributesRoute,
   vendorShopSlugBrandsRoute: vendorShopSlugBrandsRoute,
   vendorShopSlugCategoriesRoute: vendorShopSlugCategoriesRoute,
+  vendorShopSlugCouponsRoute: vendorShopSlugCouponsRoute,
   vendorShopSlugProductsRoute: vendorShopSlugProductsRoute,
+  vendorShopSlugReviewsRoute: vendorShopSlugReviewsRoute,
+  vendorShopSlugShippingRoute: vendorShopSlugShippingRoute,
+  vendorShopSlugStaffRoute: vendorShopSlugStaffRoute,
+  vendorShopSlugTagsRoute: vendorShopSlugTagsRoute,
+  vendorShopSlugTaxesRoute: vendorShopSlugTaxesRoute,
+  vendorShopSlugTransactionsRoute: vendorShopSlugTransactionsRoute,
   vendorShopSlugIndexRoute: vendorShopSlugIndexRoute,
+  vendorShopSlugOrdersOrderIdRoute: vendorShopSlugOrdersOrderIdRoute,
+  vendorShopSlugOrdersIndexRoute: vendorShopSlugOrdersIndexRoute,
 }
 
 const vendorShopSlugRouteWithChildren = vendorShopSlugRoute._addFileChildren(

@@ -1,3 +1,4 @@
+import type { CategoryFormValues } from '#/types/category-types'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -35,15 +36,6 @@ import {
   Smartphone,
   Watch,
 } from 'lucide-react'
-
-export interface CategoryFormValues {
-  name: string
-  slug: string
-  description: string
-  image: FileList | null
-  icon: string
-  parentId: string
-}
 
 export interface CategoryOption {
   id: string
