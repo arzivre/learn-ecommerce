@@ -1,29 +1,22 @@
+import { getShopNavItems } from '#/lib/constants/vendors.routes'
 import { VendorNavMenu } from '@/components/base/vendors/vendor-nav-menu'
 import { VendorUserMenu } from '@/components/base/vendors/vendor-user-menu'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import {
-    Sidebar,
-    SidebarContent,
-    SidebarFooter,
-    SidebarGroup,
-    SidebarGroupContent,
-    SidebarGroupLabel,
-    SidebarHeader,
-    SidebarRail,
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarRail,
 } from '@/components/ui/sidebar'
-import type { VendorNavItem } from '@/types/vendor'
 import { Link } from '@tanstack/react-router'
 import {
-    ArrowLeft,
-    BarChart3,
-    FileText,
-    Home,
-    Package,
-    Settings,
-    ShoppingBag,
-    Store,
-    Users,
+  ArrowLeft,
+  Store
 } from 'lucide-react'
 
 interface ShopSidebarProps {
@@ -40,44 +33,6 @@ const mockUser = {
 }
 
 export function ShopDashboardSidebar({ shopName, shopSlug }: ShopSidebarProps) {
-  const shopNavItems: VendorNavItem[] = [
-    {
-      title: 'Dashboard',
-      href: `/shop/${shopSlug}`,
-      icon: Home,
-    },
-    {
-      title: 'Products',
-      href: `/shop/${shopSlug}/products`,
-      icon: Package,
-    },
-    {
-      title: 'Orders',
-      href: `/shop/${shopSlug}/orders`,
-      icon: ShoppingBag,
-    },
-    {
-      title: 'Customers',
-      href: `/shop/${shopSlug}/customers`,
-      icon: Users,
-    },
-    {
-      title: 'Analytics',
-      href: `/shop/${shopSlug}/analytics`,
-      icon: BarChart3,
-    },
-    {
-      title: 'Reports',
-      href: `/shop/${shopSlug}/reports`,
-      icon: FileText,
-    },
-    {
-      title: 'Settings',
-      href: `/shop/${shopSlug}/settings`,
-      icon: Settings,
-    },
-  ]
-
   return (
     <Sidebar collapsible="icon" variant="inset">
       <SidebarHeader>
@@ -112,7 +67,7 @@ export function ShopDashboardSidebar({ shopName, shopSlug }: ShopSidebarProps) {
         <SidebarGroup>
           <SidebarGroupLabel>Shop Management</SidebarGroupLabel>
           <SidebarGroupContent>
-            <VendorNavMenu items={shopNavItems} />
+            <VendorNavMenu items={getShopNavItems(shopSlug)} />
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>

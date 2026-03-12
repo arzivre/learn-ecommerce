@@ -8,7 +8,7 @@ interface ShopProductsTemplateProps {
   onSearch: (query: string) => void
 }
 
-export default function ShopProductsTemplate({
+export function ShopProductsTemplate({
   products,
   onAddProduct,
   //   onSearch,
