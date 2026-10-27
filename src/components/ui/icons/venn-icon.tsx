@@ -1,4 +1,4 @@
-import type * as React from "react";
+import type * as React from 'react'
 
 const VennIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -32,6 +32,6 @@ const VennIcon = (props: React.SVGProps<SVGSVGElement>) => (
       d="M37.13 45.277a8.5 8.5 0 1 0 12.636 6.318c-.882.237-1.809.363-2.766.363a10.63 10.63 0 0 1-9.87-6.681M51.798 50.816q.159.903.16 1.85c0 2.962-1.212 5.641-3.166 7.568a8.5 8.5 0 0 0 8.078-14.957 10.66 10.66 0 0 1-5.072 5.539"
     ></path>
   </svg>
-);
+)
 
-export default VennIcon;
+export default VennIcon

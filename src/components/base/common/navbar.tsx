@@ -26,12 +26,12 @@ export function Navbar({
           key={item.to}
           to={item.to}
           className={cn(
-            'flex @7xl:h-16 items-center justify-center rounded-xl border border-dashed bg-transparent px-7.5 text-lg transition-all hover:border-transparent hover:bg-primary hover:text-background dark:text-body-70 dark:hover:text-background',
+            'flex items-center justify-center rounded-xl border border-dashed bg-transparent px-7.5 text-lg transition-all hover:border-transparent hover:bg-primary hover:text-background @7xl:h-16 dark:text-body-70 dark:hover:text-background',
             linkClassName,
           )}
           activeProps={{
             className: cn(
-              '@7xl:h-16 h-12 rounded-xl text-lg px-[30px] bg-foreground! text-background border-transparent dark:bg-body-10! hover:dark:text-foreground',
+              'h-12 rounded-xl border-transparent bg-foreground! px-[30px] text-lg text-background @7xl:h-16 dark:bg-body-10! hover:dark:text-foreground',
               activeLinkClassName,
             ),
           }}

@@ -1,20 +1,20 @@
-import { PageHeader } from "@/components/base/common/page-header";
-import { AdminTenantTable } from "@/components/containers/admin/tenant/admin-tenant-table";
-import type { AdminTenant } from "@/types/tenant";
+import { PageHeader } from '@/components/base/common/page-header'
+import { AdminTenantTable } from '@/components/containers/admin/tenant/admin-tenant-table'
+import type { AdminTenant } from '@/types/tenant'
 
 interface AdminTenantsTemplateProps {
-    tenants: AdminTenant[];
+  tenants: AdminTenant[]
 }
 
 export function AdminTenantsTemplate({ tenants }: AdminTenantsTemplateProps) {
-    return (
-        <>
-            <PageHeader
-                title="Tenants"
-                description="Manage all registered shops and vendors"
-            />
+  return (
+    <>
+      <PageHeader
+        title="Tenants"
+        description="Manage all registered shops and vendors"
+      />
 
-            <AdminTenantTable tenants={tenants} />
-        </>
-    );
+      <AdminTenantTable tenants={tenants} />
+    </>
+  )
 }

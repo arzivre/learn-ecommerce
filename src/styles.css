@@ -189,7 +189,7 @@ code {
   h4,
   h5,
   h6 {
-    @apply text-black dark:text-white font-medium;
+    @apply font-medium text-black dark:text-white;
   }
 }
 

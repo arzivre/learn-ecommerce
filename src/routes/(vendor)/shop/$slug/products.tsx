@@ -2,13 +2,13 @@ import { ShopProductsPageSkeleton } from '#/components/base/vendors/skeleton/sho
 import { AddProductDialog } from '#/components/containers/vendors/products/add-product-dialog'
 import { ShopProductsTemplate } from '#/components/templates/vendor/products/shop-products-template'
 import {
-    mockAttributes,
-    mockBrands,
-    mockCategories,
-    mockProducts,
-    mockShippingMethods,
-    mockTags,
-    mockTaxes,
+  mockAttributes,
+  mockBrands,
+  mockCategories,
+  mockProducts,
+  mockShippingMethods,
+  mockTags,
+  mockTaxes,
 } from '@/data/shop-products'
 import { createFileRoute } from '@tanstack/react-router'
 import { useState } from 'react'

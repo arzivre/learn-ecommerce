@@ -4,7 +4,7 @@ import {
   rootRouteId,
   useMatch,
   useRouter,
-} from "@tanstack/react-router";
+} from '@tanstack/react-router'
 import {
   AlertCircle,
   ChevronDown,
@@ -12,36 +12,36 @@ import {
   Home,
   RefreshCcw,
   RotateCcw,
-} from "lucide-react";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+} from 'lucide-react'
+import { useState } from 'react'
+import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card'
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { ScrollArea } from "@/components/ui/scroll-area";
+} from '@/components/ui/collapsible'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 export function DefaultErrorComponent({ error }: ErrorComponentProps) {
-  const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter()
+  const [isOpen, setIsOpen] = useState(false)
   const isRoot = useMatch({
     strict: false,
     select: (state) => state.id === rootRouteId,
-  });
+  })
 
   const errorMessage =
-    Error instanceof Error ? error.message : JSON.stringify(error);
-  const stackTrace = error instanceof Error ? error.stack : null;
+    Error instanceof Error ? error.message : JSON.stringify(error)
+  const stackTrace = error instanceof Error ? error.stack : null
 
-  console.error("DefaultErrorBoundary caught error:", error);
+  console.error('DefaultErrorBoundary caught error:', error)
 
   return (
     <div className="@container flex min-h-[50vh] min-w-0 flex-1 flex-col items-center justify-center p-4">
@@ -50,10 +50,10 @@ export function DefaultErrorComponent({ error }: ErrorComponentProps) {
           <div className="rounded-full bg-destructive/10 p-3 text-destructive ring-1 ring-destructive/20">
             <AlertCircle className="size-6" />
           </div>
-          <CardTitle className="font-bold text-2xl">
+          <CardTitle className="text-2xl font-bold">
             Something went wrong
           </CardTitle>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-sm text-muted-foreground">
             We encountered an unexpected error. Please try again or return to
             the previous page.
           </p>
@@ -65,7 +65,7 @@ export function DefaultErrorComponent({ error }: ErrorComponentProps) {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="flex w-full items-center justify-between font-normal text-muted-foreground text-xs hover:bg-muted/50"
+                  className="flex w-full items-center justify-between text-xs font-normal text-muted-foreground hover:bg-muted/50"
                 >
                   <span>Error Details</span>
                   {isOpen ? (
@@ -77,12 +77,12 @@ export function DefaultErrorComponent({ error }: ErrorComponentProps) {
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <div className="mt-2 rounded-md bg-muted/50 p-3 font-mono text-xs">
-                  <p className="wrap-break-word font-semibold text-destructive">
+                  <p className="font-semibold wrap-break-word text-destructive">
                     {errorMessage}
                   </p>
                   {stackTrace && (
                     <ScrollArea className="mt-2 h-37.5 w-full rounded border bg-background/50 p-2 text-muted-foreground">
-                      <pre className="whitespace-pre-wrap break-all text-[10px] leading-tight opacity-70">
+                      <pre className="text-[10px] leading-tight break-all whitespace-pre-wrap opacity-70">
                         {stackTrace}
                       </pre>
                     </ScrollArea>
@@ -124,5 +124,5 @@ export function DefaultErrorComponent({ error }: ErrorComponentProps) {
         </CardFooter>
       </Card>
     </div>
-  );
+  )
 }

@@ -15,8 +15,7 @@ import {
 } from '@/components/ui/sidebar'
 import { useRouter } from '@tanstack/react-router'
 import { ChevronDown, LogOut, User } from 'lucide-react'
-import { Avatar as AvatarPrimitive } from "radix-ui"
-
+import { Avatar as AvatarPrimitive } from 'radix-ui'
 
 interface VendorUser {
   name: string

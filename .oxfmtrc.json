@@ -1,21 +1,14 @@
 {
-  "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "semi": false,
-  "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 80,
-  "sortPackageJson": false,
-  "sortTailwindcss": {
-    "stylesheet": "./src/styles.css",
-    "functions": [
-      "clsx",
-      "cn"
-    ],
-    "preserveWhitespace": true
-  },
-  "ignorePatterns": [
-    "package-lock.json",
-    "pnpm-lock.yaml",
-    "yarn.lock"
-  ]
+    "$schema": "./node_modules/oxfmt/configuration_schema.json",
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "printWidth": 80,
+    "sortPackageJson": false,
+    "sortTailwindcss": {
+        "stylesheet": "./src/styles.css",
+        "functions": ["clsx", "cn"],
+        "preserveWhitespace": true
+    },
+    "ignorePatterns": ["package-lock.json", "pnpm-lock.yaml", "yarn.lock"]
 }

@@ -1,4 +1,4 @@
-import {FeatureGridItem} from '#/components/base/common/feature-grid-item'
+import { FeatureGridItem } from '#/components/base/common/feature-grid-item'
 import { features } from '#/data/feature'
 import { gridCellBorderClasses } from '@/lib/utils'
 

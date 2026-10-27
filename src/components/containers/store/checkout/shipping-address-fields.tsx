@@ -1,24 +1,24 @@
 import {
   FormTextareaField,
   FormTextField,
-} from "@/components/base/forms/form-field";
-import { PhoneInput } from "@/components/base/forms/phone-input";
-import { FieldGroup } from "@/components/ui/field";
-import type { ShippingAddressInput } from "@/lib/validators/shipping-address";
+} from '@/components/base/forms/form-field'
+import { PhoneInput } from '@/components/base/forms/phone-input'
+import { FieldGroup } from '@/components/ui/field'
+import type { ShippingAddressInput } from '@/lib/validators/shipping-address'
 
 interface ShippingAddressFieldsProps {
   form: {
     Field: (props: {
-      name: keyof ShippingAddressInput;
-      children: (field: any) => React.ReactNode;
-    }) => React.ReactNode;
-  } & Record<string, unknown>;
+      name: keyof ShippingAddressInput
+      children: (field: any) => React.ReactNode
+    }) => React.ReactNode
+  } & Record<string, unknown>
 }
 
 export function ShippingAddressFields({ form }: ShippingAddressFieldsProps) {
   return (
     <FieldGroup className="gap-8">
-      <div className="grid @4xl:grid-cols-2 grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-6 @4xl:grid-cols-2">
         <form.Field
           name="firstName"
           children={(field) => (
@@ -45,7 +45,7 @@ export function ShippingAddressFields({ form }: ShippingAddressFieldsProps) {
         />
       </div>
 
-      <div className="grid @4xl:grid-cols-2 grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-6 @4xl:grid-cols-2">
         <form.Field
           name="email"
           children={(field) => (
@@ -83,7 +83,7 @@ export function ShippingAddressFields({ form }: ShippingAddressFieldsProps) {
         </form.Field>
       </div>
 
-      <div className="grid @4xl:grid-cols-3 grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-6 @4xl:grid-cols-3">
         <form.Field
           name="city"
           children={(field) => (
@@ -135,5 +135,5 @@ export function ShippingAddressFields({ form }: ShippingAddressFieldsProps) {
         )}
       />
     </FieldGroup>
-  );
+  )
 }

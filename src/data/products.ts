@@ -1,75 +1,75 @@
 export interface Review {
-  id: string;
-  userName: string;
-  userAvatar: string;
-  date: string;
-  rating: number;
-  comment: string;
+  id: string
+  userName: string
+  userAvatar: string
+  date: string
+  rating: number
+  comment: string
 }
 
 export interface Product {
-  id: string;
-  slug: string;
-  name: string;
-  description: string;
+  id: string
+  slug: string
+  name: string
+  description: string
   category: {
-    id: string;
-    name: string;
-    slug: string;
-  };
+    id: string
+    name: string
+    slug: string
+  }
   price: {
-    current: number;
-    original: number;
-    currency: string;
-    discountPercentage: number;
-  };
+    current: number
+    original: number
+    currency: string
+    discountPercentage: number
+  }
   images: {
-    id: string;
-    url: string;
-    alt: string;
-  }[];
+    id: string
+    url: string
+    alt: string
+  }[]
   rating: {
-    average: number;
-    count: number;
+    average: number
+    count: number
     breakdown: {
-      5: number;
-      4: number;
-      3: number;
-      2: number;
-      1: number;
-    };
-  };
-  reviews: Review[];
+      5: number
+      4: number
+      3: number
+      2: number
+      1: number
+    }
+  }
+  reviews: Review[]
   stock: {
-    inStock: boolean;
-    quantity: number;
-  };
+    inStock: boolean
+    quantity: number
+  }
   store: {
-    id: string;
-    name: string;
-    slug: string;
-    logo: string;
-    rating: number;
-    reviewCount: number;
-    isVerified: boolean;
-    memberSince: string;
-  };
+    id: string
+    name: string
+    slug: string
+    logo: string
+    rating: number
+    reviewCount: number
+    isVerified: boolean
+    memberSince: string
+  }
   shipping: {
-    freeShipping: boolean;
-    deliveryTime: string;
-    policy: string;
-  };
-  specifications: Record<string, string>;
-  isOnSale: boolean;
-  similarProducts: Product[]; // Recursive reference for simplicity in mock
-  breadcrumbs: { label: string; href: string }[];
+    freeShipping: boolean
+    deliveryTime: string
+    policy: string
+  }
+  specifications: Record<string, string>
+  isOnSale: boolean
+  similarProducts: Product[] // Recursive reference for simplicity in mock
+  breadcrumbs: { label: string; href: string }[]
   // Legacy fields for compatibility if needed, but we should try to use the new structure
-  brand: string;
-  colors: string[];
-  sizes: string[];
-  isNew: boolean;
-  createdAt: string;
-  sales: number;
+  brand: string
+  colors: string[]
+  sizes: string[]
+  isNew: boolean
+  createdAt: string
+  sales: number
 }
 
 export const CATEGORIES = {
@@ -77,7 +77,7 @@ export const CATEGORIES = {
   Electronics: ['Smartphones', 'Laptops', 'Headphones', 'Accessories'],
   Home: ['Furniture', 'Decor', 'Kitchen', 'Bedding'],
   Footwear: ['Sneakers', 'Boots', 'Sandals', 'Formal'],
-};
+}
 
 export const BRANDS = [
   'Nike',
@@ -91,7 +91,7 @@ export const BRANDS = [
   'Uniqlo',
   'Dyson',
   'Bose',
-];
+]
 
 export const COLORS = [
   'Black',
@@ -104,9 +104,9 @@ export const COLORS = [
   'Pink',
   'Grey',
   'Beige',
-];
+]
 
-export const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+export const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
 
 const ADJECTIVES = [
   'Premium',
@@ -117,7 +117,7 @@ const ADJECTIVES = [
   'Lightweight',
   'Comfortable',
   'Stylish',
-];
+]
 const NOUNS = [
   'Runner',
   'Basic',
@@ -127,17 +127,17 @@ const NOUNS = [
   'Ultra',
   'Essential',
   'Signature',
-];
+]
 
 const getRandomInt = (min: number, max: number) =>
-  Math.floor(Math.random() * (max - min + 1)) + min;
+  Math.floor(Math.random() * (max - min + 1)) + min
 const getRandomItem = <T>(arr: T[]): T =>
-  arr[Math.floor(Math.random() * arr.length)];
+  arr[Math.floor(Math.random() * arr.length)]
 const getRandomItems = <T>(arr: T[], min: number, max: number): T[] => {
-  const count = getRandomInt(min, max);
-  const shuffled = [...arr].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
-};
+  const count = getRandomInt(min, max)
+  const shuffled = [...arr].sort(() => 0.5 - Math.random())
+  return shuffled.slice(0, count)
+}
 
 const generateReviews = (count: number): Review[] => {
   return Array.from({ length: count }).map((_, i) => ({
@@ -150,7 +150,7 @@ const generateReviews = (count: number): Review[] => {
     ]),
     userAvatar: `https://i.pravatar.cc/150?u=${getRandomInt(1, 1000)}`,
     date: new Date(
-      Date.now() - getRandomInt(0, 10000000000)
+      Date.now() - getRandomInt(0, 10000000000),
     ).toLocaleDateString(),
     rating: getRandomInt(3, 5),
     comment: getRandomItem([
@@ -160,30 +160,30 @@ const generateReviews = (count: number): Review[] => {
       'Satisfied with the purchase.',
       'Could be better, but decent for the price.',
     ]),
-  }));
-};
+  }))
+}
 
 const generateProducts = (count: number): Product[] => {
   return Array.from({ length: count }).map((_, i) => {
     const categoryKey = getRandomItem(
-      Object.keys(CATEGORIES)
-    ) as keyof typeof CATEGORIES;
-    const subcategory = getRandomItem(CATEGORIES[categoryKey]);
-    const brand = getRandomItem(BRANDS);
-    const name = `${brand} ${getRandomItem(ADJECTIVES)} ${subcategory} ${getRandomItem(NOUNS)}`;
-    const slug = name.toLowerCase().replace(/ /g, '-');
+      Object.keys(CATEGORIES),
+    ) as keyof typeof CATEGORIES
+    const subcategory = getRandomItem(CATEGORIES[categoryKey])
+    const brand = getRandomItem(BRANDS)
+    const name = `${brand} ${getRandomItem(ADJECTIVES)} ${subcategory} ${getRandomItem(NOUNS)}`
+    const slug = name.toLowerCase().replace(/ /g, '-')
 
-    const priceVal = getRandomInt(20, 500);
-    const hasDiscount = Math.random() > 0.7;
+    const priceVal = getRandomInt(20, 500)
+    const hasDiscount = Math.random() > 0.7
     const discountPercent = hasDiscount
       ? getRandomItem([10, 20, 25, 30, 50])
-      : 0;
+      : 0
     const originalPrice = hasDiscount
       ? Math.round(priceVal / (1 - discountPercent / 100))
-      : priceVal;
+      : priceVal
 
-    const ratingAvg = Number((Math.random() * 2 + 3).toFixed(1));
-    const reviewCount = getRandomInt(5, 100);
+    const ratingAvg = Number((Math.random() * 2 + 3).toFixed(1))
+    const reviewCount = getRandomInt(5, 100)
 
     return {
       id: `prod-${i + 1}`,
@@ -297,17 +297,17 @@ const generateProducts = (count: number): Product[] => {
       isNew: Math.random() > 0.8,
       createdAt: new Date().toISOString(),
       sales: getRandomInt(0, 1000),
-    };
-  });
-};
+    }
+  })
+}
 
-const products = generateProducts(50);
+const products = generateProducts(50)
 
 // Populate similar products
 products.forEach((product) => {
   product.similarProducts = products
     .filter((p) => p.category.id === product.category.id && p.id !== product.id)
-    .slice(0, 6);
-});
+    .slice(0, 6)
+})
 
-export const mockProducts = products;
+export const mockProducts = products

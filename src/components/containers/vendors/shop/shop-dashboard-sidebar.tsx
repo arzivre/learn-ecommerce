@@ -14,10 +14,7 @@ import {
   SidebarRail,
 } from '@/components/ui/sidebar'
 import { Link } from '@tanstack/react-router'
-import {
-  ArrowLeft,
-  Store
-} from 'lucide-react'
+import { ArrowLeft, Store } from 'lucide-react'
 
 interface ShopSidebarProps {
   shopName: string

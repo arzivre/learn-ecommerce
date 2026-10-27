@@ -1,3 +1,1 @@
-export function useCart() {
-    
-}
+export function useCart() {}

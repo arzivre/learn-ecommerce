@@ -1,4 +1,4 @@
-import type * as React from "react";
+import type * as React from 'react'
 
 const TrophyCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -34,6 +34,6 @@ const TrophyCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
       clipRule="evenodd"
     ></path>
   </svg>
-);
+)
 
-export default TrophyCircleIcon;
+export default TrophyCircleIcon

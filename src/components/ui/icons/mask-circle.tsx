@@ -1,4 +1,4 @@
-import type * as React from "react";
+import type * as React from 'react'
 
 const MaskCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -30,6 +30,6 @@ const MaskCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
       clipRule="evenodd"
     ></path>
   </svg>
-);
+)
 
-export default MaskCircleIcon;
+export default MaskCircleIcon

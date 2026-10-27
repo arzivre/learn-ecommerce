@@ -1,4 +1,4 @@
-import type * as React from "react";
+import type * as React from 'react'
 
 const DialCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -28,6 +28,6 @@ const DialCircleIcon = (props: React.SVGProps<SVGSVGElement>) => (
       d="M45.938 39.996A7.085 7.085 0 0 0 47 54.083a7.083 7.083 0 0 0 1.063-14.087v5.587a1.063 1.063 0 0 1-2.125 0zM48.417 34.958a1.417 1.417 0 1 1-2.834 0 1.417 1.417 0 0 1 2.834 0M59.042 48.417a1.417 1.417 0 1 1 0-2.834 1.417 1.417 0 0 1 0 2.834M34.958 48.417a1.417 1.417 0 1 1 0-2.834 1.417 1.417 0 0 1 0 2.834M39.487 37.484a1.417 1.417 0 1 1-2.004 2.003 1.417 1.417 0 0 1 2.004-2.004M56.517 54.513a1.416 1.416 0 1 1-2.004 2.004 1.416 1.416 0 0 1 2.004-2.004M56.517 39.487a1.417 1.417 0 1 1-2.004-2.004 1.417 1.417 0 0 1 2.004 2.004M39.487 56.516a1.417 1.417 0 1 1-2.004-2.003 1.417 1.417 0 0 1 2.004 2.003"
     ></path>
   </svg>
-);
+)
 
-export default DialCircleIcon;
+export default DialCircleIcon

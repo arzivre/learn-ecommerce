@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from '@tanstack/react-router'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,26 +6,26 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { cn } from "@/lib/utils";
+} from '@/components/ui/breadcrumb'
+import { cn } from '@/lib/utils'
 
 interface BreadcrumbNavItem {
-  label: string;
-  href?: string | readonly string[];
-  isActive?: boolean;
+  label: string
+  href?: string | readonly string[]
+  isActive?: boolean
 }
 
 interface BreadcrumbNavProps {
-  items: readonly BreadcrumbNavItem[];
-  className?: string;
+  items: readonly BreadcrumbNavItem[]
+  className?: string
 }
 
 export function BreadcrumbNav({ items, className }: BreadcrumbNavProps) {
   return (
-    <Breadcrumb className={cn("mb-6", className)}>
+    <Breadcrumb className={cn('mb-6', className)}>
       <BreadcrumbList>
         {items.map((item, index) => {
-          const isLast = item.isActive ?? index === items.length - 1;
+          const isLast = item.isActive ?? index === items.length - 1
 
           return (
             <div key={item.label} className="flex items-center">
@@ -40,9 +40,9 @@ export function BreadcrumbNav({ items, className }: BreadcrumbNavProps) {
               </BreadcrumbItem>
               {!isLast && <BreadcrumbSeparator />}
             </div>
-          );
+          )
         })}
       </BreadcrumbList>
     </Breadcrumb>
-  );
+  )
 }
