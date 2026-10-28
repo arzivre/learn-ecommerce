@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthVendorSignUpRouteImport } from './routes/auth/vendor-sign-up'
+import { Route as AuthSignUpRouteImport } from './routes/auth/sign-up'
 import { Route as AuthSignInRouteImport } from './routes/auth/sign-in'
 import { Route as vendorLayoutRouteImport } from './routes/(vendor)/_layout'
 import { Route as storeLayoutRouteImport } from './routes/(store)/_layout'
@@ -63,6 +65,16 @@ import { Route as adminAdminTenantsTenantIdRouteImport } from './routes/(admin)/
 import { Route as vendorShopSlugOrdersIndexRouteImport } from './routes/(vendor)/shop/$slug/orders/index'
 import { Route as vendorShopSlugOrdersOrderIdRouteImport } from './routes/(vendor)/shop/$slug/orders/$orderId'
 
+const AuthVendorSignUpRoute = AuthVendorSignUpRouteImport.update({
+  id: '/auth/vendor-sign-up',
+  path: '/auth/vendor-sign-up',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthSignUpRoute = AuthSignUpRouteImport.update({
+  id: '/auth/sign-up',
+  path: '/auth/sign-up',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthSignInRoute = AuthSignInRouteImport.update({
   id: '/auth/sign-in',
   path: '/auth/sign-in',
@@ -343,6 +355,8 @@ const vendorShopSlugOrdersOrderIdRoute =
 export interface FileRoutesByFullPath {
   '/admin': typeof adminAdminRouteWithChildren
   '/auth/sign-in': typeof AuthSignInRoute
+  '/auth/sign-up': typeof AuthSignUpRoute
+  '/auth/vendor-sign-up': typeof AuthVendorSignUpRoute
   '/admin/my-store': typeof adminAdminMyStoreRoute
   '/cart': typeof storeLayoutCartRoute
   '/checkout': typeof storeLayoutCheckoutRoute
@@ -395,6 +409,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/auth/sign-in': typeof AuthSignInRoute
+  '/auth/sign-up': typeof AuthSignUpRoute
+  '/auth/vendor-sign-up': typeof AuthVendorSignUpRoute
   '/admin/my-store': typeof adminAdminMyStoreRoute
   '/cart': typeof storeLayoutCartRoute
   '/checkout': typeof storeLayoutCheckoutRoute
@@ -450,6 +466,8 @@ export interface FileRoutesById {
   '/(store)/_layout': typeof storeLayoutRouteWithChildren
   '/(vendor)/_layout': typeof vendorLayoutRouteWithChildren
   '/auth/sign-in': typeof AuthSignInRoute
+  '/auth/sign-up': typeof AuthSignUpRoute
+  '/auth/vendor-sign-up': typeof AuthVendorSignUpRoute
   '/(admin)/admin/my-store': typeof adminAdminMyStoreRoute
   '/(store)/_layout/cart': typeof storeLayoutCartRoute
   '/(store)/_layout/checkout': typeof storeLayoutCheckoutRoute
@@ -505,6 +523,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/admin'
     | '/auth/sign-in'
+    | '/auth/sign-up'
+    | '/auth/vendor-sign-up'
     | '/admin/my-store'
     | '/cart'
     | '/checkout'
@@ -557,6 +577,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth/sign-in'
+    | '/auth/sign-up'
+    | '/auth/vendor-sign-up'
     | '/admin/my-store'
     | '/cart'
     | '/checkout'
@@ -611,6 +633,8 @@ export interface FileRouteTypes {
     | '/(store)/_layout'
     | '/(vendor)/_layout'
     | '/auth/sign-in'
+    | '/auth/sign-up'
+    | '/auth/vendor-sign-up'
     | '/(admin)/admin/my-store'
     | '/(store)/_layout/cart'
     | '/(store)/_layout/checkout'
@@ -667,12 +691,28 @@ export interface RootRouteChildren {
   storeLayoutRoute: typeof storeLayoutRouteWithChildren
   vendorLayoutRoute: typeof vendorLayoutRouteWithChildren
   AuthSignInRoute: typeof AuthSignInRoute
+  AuthSignUpRoute: typeof AuthSignUpRoute
+  AuthVendorSignUpRoute: typeof AuthVendorSignUpRoute
   vendorShopSlugRoute: typeof vendorShopSlugRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/auth/vendor-sign-up': {
+      id: '/auth/vendor-sign-up'
+      path: '/auth/vendor-sign-up'
+      fullPath: '/auth/vendor-sign-up'
+      preLoaderRoute: typeof AuthVendorSignUpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/sign-up': {
+      id: '/auth/sign-up'
+      path: '/auth/sign-up'
+      fullPath: '/auth/sign-up'
+      preLoaderRoute: typeof AuthSignUpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth/sign-in': {
       id: '/auth/sign-in'
       path: '/auth/sign-in'
@@ -1186,6 +1226,8 @@ const rootRouteChildren: RootRouteChildren = {
   storeLayoutRoute: storeLayoutRouteWithChildren,
   vendorLayoutRoute: vendorLayoutRouteWithChildren,
   AuthSignInRoute: AuthSignInRoute,
+  AuthSignUpRoute: AuthSignUpRoute,
+  AuthVendorSignUpRoute: AuthVendorSignUpRoute,
   vendorShopSlugRoute: vendorShopSlugRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
