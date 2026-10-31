@@ -1,17 +1,17 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { twoFactor } from "better-auth/plugins";
+import { admin, twoFactor } from "better-auth/plugins";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
-import { db } from "../db";
+import { db } from "./db";
 import {
     account,
     session,
     user,
     verification,
     twoFactor as twoFactorTable,
-} from "../db/schema/auth-schema";
-import OtpEmail from "../emails/otp-email";
-import { sendEmail } from "../email";
+} from "./db/schema/auth-schema";
+import OtpEmail from "./emails/otp-email";
+import { sendEmail } from "./email";
 
 export const auth = betterAuth({
     // Base path where auth routes are mounted
@@ -88,6 +88,7 @@ export const auth = betterAuth({
             : {}),
     },
     plugins: [
+        admin({ defaultRole: "customer" }),
         twoFactor({
             skipVerificationOnEnable: true,
             otpOptions: {

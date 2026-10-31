@@ -59,9 +59,15 @@ export default function Header() {
                         {user ? (
                             <UserMenu user={user} />
                         ) : (
-                            <Button variant="outline" size={"lg"}>
-                                Login
-                            </Button>
+                            <Link to="/auth/sign-in">
+                                <Button
+                                    variant="default"
+                                    size="lg"
+                                    type="button"
+                                >
+                                    Sign In
+                                </Button>
+                            </Link>
                         )}
                     </div>
 

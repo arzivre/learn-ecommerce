@@ -1,28 +1,67 @@
 import { defineRelations } from "drizzle-orm";
-import * as schema from "./auth-schema";
+import * as auth from "./auth-schema";
+import * as shop from "./shop-schema";
+
+const schema = { ...auth, ...shop };
 
 export const relations = defineRelations(schema, (r) => ({
     user: {
         sessions: r.many.session(),
         accounts: r.many.account(),
         twoFactor: r.many.twoFactor(),
+        // The vendor profile this user owns (0 or 1)
+        vendor: r.one.vendors({
+            from: r.user.id,
+            to: r.vendors.userId,
+            alias: "vendor_owner",
+        }),
+        // Vendors this user approved (admin side)
+        approvedVendors: r.many.vendors({
+            alias: "vendor_approver",
+        }),
     },
+
     session: {
         user: r.one.user({
             from: r.session.userId,
             to: r.user.id,
         }),
     },
+
     account: {
         user: r.one.user({
             from: r.account.userId,
             to: r.user.id,
         }),
     },
+
     twoFactor: {
         user: r.one.user({
             from: r.twoFactor.userId,
             to: r.user.id,
+        }),
+    },
+
+    vendors: {
+        user: r.one.user({
+            from: r.vendors.userId,
+            to: r.user.id,
+            optional: false,
+            alias: "vendor_owner",
+        }),
+        approver: r.one.user({
+            from: r.vendors.approvedBy,
+            to: r.user.id,
+            alias: "vendor_approver",
+        }),
+        shops: r.many.shops(),
+    },
+
+    shops: {
+        vendor: r.one.vendors({
+            from: r.shops.vendorId,
+            to: r.vendors.id,
+            optional: false,
         }),
     },
 }));

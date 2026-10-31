@@ -27,7 +27,7 @@ export default function SignInPage() {
             <div className="mt-6">
                 <AuthForm
                     mode="sign-in"
-                    includeSocial
+                    includeSocial={false}
                     onSuccess={handleSuccess}
                     redirectUrl={redirectTo || "/"}
                 />
