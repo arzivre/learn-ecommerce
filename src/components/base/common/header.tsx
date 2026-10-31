@@ -7,6 +7,7 @@ import { ThemeToggle } from "../provider/theme-toggle";
 import { Navbar } from "./navbar";
 import { MobileMenu } from "./mobile-menu";
 import { useSession } from "#/lib/auth/auth-client";
+import UserMenu from "./user-menu";
 
 const navigationItems = [
     { to: "/", label: "Home" },
@@ -56,9 +57,11 @@ export default function Header() {
                         <ThemeToggle />
 
                         {user ? (
-                            <Button variant="outline" size={'lg'}>Logout</Button>
+                            <UserMenu user={user} />
                         ) : (
-                            <Button variant="outline" size={'lg'}>Login</Button>
+                            <Button variant="outline" size={"lg"}>
+                                Login
+                            </Button>
                         )}
                     </div>
 
