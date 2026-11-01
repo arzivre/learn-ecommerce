@@ -15,10 +15,16 @@ import { useSession } from "@/lib/auth/auth-client";
 import type { VendorNavItem } from "@/types/vendor";
 import { Link } from "@tanstack/react-router";
 import { Home, Store } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { useShops } from "@/hooks/vendors/use-shops";
 
 export function VendorDashboardSidebar() {
     const { data: session } = useSession();
     const user = session?.user;
+
+    const { shopsQueryOptions } = useShops();
+    const { data: shopData } = useQuery(shopsQueryOptions());
+    const shopCount = shopData?.shops?.length ?? 0;
 
     const vendorNavItems: VendorNavItem[] = [
         {
@@ -30,7 +36,7 @@ export function VendorDashboardSidebar() {
             title: "My Shops",
             href: "/my-shop",
             icon: Store,
-            badge: "5",
+            badge: shopCount > 0 ? shopCount : undefined,
         },
     ];
 
