@@ -2,7 +2,9 @@ import {
     queryOptions,
     useMutation,
     useQueryClient,
+    useSuspenseQuery,
 } from "@tanstack/react-query";
+import { useMemo } from "react";
 import { toast } from "sonner";
 import {
     createShop,
@@ -101,5 +103,57 @@ export const useShops = () => {
         shopsQueryOptions: vendorShopsQueryOptions,
         shopBySlugQueryOptions,
         ...mutations,
+    };
+};
+
+export const useTransformedShops = (options?: { filterByVendor?: boolean }) => {
+    const { shopsQueryOptions } = useShops();
+    const { data, ...rest } = useSuspenseQuery(shopsQueryOptions());
+
+    const shops = data?.shops ?? [];
+    const vendorId = data?.vendorId;
+
+    const transformedShops = useMemo(() => {
+        let filteredShops = shops;
+
+        if (options?.filterByVendor && vendorId) {
+            filteredShops = shops.filter((shop) => shop.vendorId === vendorId);
+        } else if (options?.filterByVendor && !vendorId) {
+            filteredShops = [];
+        }
+
+        return filteredShops.map((shop) => ({
+            id: shop.id,
+            vendorId: shop.vendorId,
+            slug: shop.slug,
+            name: shop.name,
+            description: shop.description || null,
+            logo: shop.logo || null,
+            banner: shop.banner || null,
+            category: shop.category || null,
+            address: shop.address || null,
+            phone: shop.phone || null,
+            email: shop.email || null,
+            enableNotifications: shop.enableNotifications || false,
+            monthlyRevenue: new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+            }).format(shop.totalRevenue || 0),
+            status: (shop.status === "active" ? "active" : "pending") as
+                "active" | "pending",
+            rating: (shop.rating || "0.0") as string,
+            totalProducts: shop.totalProducts || 0,
+            totalOrders: shop.totalOrders || 0,
+            createdAt: shop.createdAt || new Date(),
+            updatedAt: shop.updatedAt || new Date(),
+        }));
+    }, [shops, vendorId, options?.filterByVendor]);
+
+    return {
+        shops: transformedShops,
+        vendorId,
+        ...rest,
     };
 };
